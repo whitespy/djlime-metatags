@@ -1,0 +1,2 @@
+recursive-include metatags/locale *.po *.mo
+recursive-include metatags/templates/metatags *.html
