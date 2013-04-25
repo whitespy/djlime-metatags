@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.contenttypes import generic
-#from django.utils.encoding import force_unicode
+from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
 
@@ -21,9 +21,5 @@ class MetaTag(models.Model):
         verbose_name = _('meta tags')
         verbose_name_plural = _('meta tags')
 
-    # def __unicode__(self):
-    #     return force_unicode(self.content_object)
-    #     # if hasattr(self.content_object, '__unicode__'):
-    #     #     return self.content_object.__unicode__()
-    #     # else:
-    #     #     return ''
+    def __unicode__(self):
+        return force_unicode(self.content_object)
