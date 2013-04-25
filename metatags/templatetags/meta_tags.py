@@ -12,7 +12,8 @@ _get_page_title = lambda page_object, page_title_field: (
 
 
 @register.inclusion_tag('metatags/meta_tags.html', takes_context=True)
-def include_meta_tags(context, page_object=None, page_title_field='title'):
+def include_meta_tags(context, page_object=None, page_title_field='title',
+                      default_title=''):
     if page_object is not None:
         # Get the meta tags for the object
         try:
@@ -32,10 +33,12 @@ def include_meta_tags(context, page_object=None, page_title_field='title'):
         url_path = context['request'].path_info
         try:
             meta_tags = MetaTag.objects.get(url=url_path)
-            # Get not blank title
-            meta_tags.title = meta_tags.title or \
-                _get_page_title(page_object, page_title_field)
+            meta_tags.title = meta_tags.title or default_title
         except MetaTag.DoesNotExist:
-            meta_tags = None
+            meta_tags = {
+                'title': default_title,
+                'keywords': '',
+                'description': '',
+            }
 
     return {'meta_tags': meta_tags}
