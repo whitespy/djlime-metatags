@@ -2,7 +2,6 @@
 *.pyo
 *.pyw
 .idea
-.pypirc
 dist/
 build/
 djlime_metatags.egg-info/
