@@ -6,8 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 
 
 class MetaTag(models.Model):
-    url = models.CharField(_('URL-path'), max_length=100, unique=True,
-                           blank=True)
+    url = models.CharField(_('URL-path'), max_length=100, blank=True)
     content_type = models.ForeignKey(ContentType, null=True)
     object_id = models.PositiveIntegerField(null=True)
     content_object = generic.GenericForeignKey()

@@ -48,4 +48,7 @@ class MetaTagForm(InlineMetaTagForm):
             not url.endswith('/')):
             raise forms.ValidationError(ugettext('URL is missing a trailing slash.'))
 
+        if MetaTag.objects.filter(url=url).exists():
+            raise forms.ValidationError(ugettext('Meta-tags for a given URL-path have already been identified.'))
+
         return url
