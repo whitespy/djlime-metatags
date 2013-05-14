@@ -15,6 +15,7 @@ class MetaTag(models.Model):
     description = models.TextField(_('description'), blank=True)
 
     class Meta:
+        ordering = ('id',)
         db_table = 'meta_tags'
         unique_together = ('content_type', 'object_id')
         verbose_name = _('meta tags')

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-11 16:43+0300\n"
+"POT-Creation-Date: 2013-05-14 13:25+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr "В начале URL отсутствует косая черта."
 msgid "URL is missing a trailing slash."
 msgstr "В конце URL отсутствует косая черта."
 
-#: forms.py:52
+#: forms.py:53 forms.py:55
 msgid "Meta-tags for a given URL-path have already been identified."
 msgstr "Мета-теги для заданного URL-пути уже определены."
 
@@ -62,6 +62,6 @@ msgstr "ключевые слова"
 msgid "description"
 msgstr "описание"
 
-#: models.py:20 models.py:21
+#: models.py:21 models.py:22
 msgid "meta tags"
 msgstr "мета-теги"
