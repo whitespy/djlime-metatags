@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-14 13:25+0300\n"
+"POT-Creation-Date: 2013-07-19 16:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: forms.py:31 models.py:9
+#: forms.py:26 models.py:9
 msgid "URL-path"
 msgstr "URL-путь"
 
-#: forms.py:32
+#: forms.py:27
 msgid ""
 "Example: '/about/contact/'. Make sure to have leading and trailing slashes."
 msgstr ""
 "Пример: '/about/contact/'. Убедитесь, что ввели начальную и конечную косые "
 "черты."
 
-#: forms.py:34
+#: forms.py:29
 msgid ""
 "This value must contain only letters, numbers,dots, underscores, dashes, "
 "slashes or tildes."
@@ -38,15 +38,15 @@ msgstr ""
 "Значение должно состоять только из букв, цифр и символов точки, "
 "подчеркивания, тире, косой черты и тильды."
 
-#: forms.py:44
+#: forms.py:39
 msgid "URL is missing a leading slash."
 msgstr "В начале URL отсутствует косая черта."
 
-#: forms.py:49
+#: forms.py:44
 msgid "URL is missing a trailing slash."
 msgstr "В конце URL отсутствует косая черта."
 
-#: forms.py:53 forms.py:55
+#: forms.py:48 forms.py:50
 msgid "Meta-tags for a given URL-path have already been identified."
 msgstr "Мета-теги для заданного URL-пути уже определены."
 
