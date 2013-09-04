@@ -29,8 +29,8 @@ def include_meta_tags(context, page_object=None, page_title_field='title',
                 'title': _get_page_title(page_object, page_title_field)
             }
     else:
+        # Get the meta tags for the URL-path
         try:
-            # Get the meta tags for the URL-path
             url_path = context['request'].path_info
             meta_tags = MetaTag.objects.get(url=url_path)
             meta_tags.title = meta_tags.title or default_title
