@@ -1,10 +1,12 @@
 from django.db import models
 from django.contrib.contenttypes import generic
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.contenttypes.models import ContentType
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class MetaTag(models.Model):
     url = models.CharField(_('URL-path'), max_length=100, blank=True)
     content_type = models.ForeignKey(ContentType, null=True)
@@ -21,5 +23,7 @@ class MetaTag(models.Model):
         verbose_name = _('meta tags')
         verbose_name_plural = _('meta tags')
 
-    def __unicode__(self):
-        return force_unicode(self.content_object)
+    def __str__(self):
+        if self.content_object:
+            return force_text(self.content_object)
+        return self.title

@@ -1,17 +1,18 @@
 from django.template import Library
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 
 from metatags.models import MetaTag
 
 
 register = Library()
 
-_get_page_title = lambda page_object, page_title_field: (
-    getattr(page_object, page_title_field, force_unicode(page_object))
+
+def _get_page_title(page_object, page_title_field): (
+    getattr(page_object, page_title_field, force_text(page_object))
 )
 
 
-@register.inclusion_tag('metatags/meta_tags.html', takes_context=True)
+@register.inclusion_tag('metatags/_meta_tags.html', takes_context=True)
 def include_meta_tags(context, page_object=None, page_title_field='title',
                       default_title=''):
     if page_object is not None:

@@ -3,8 +3,10 @@ from django.contrib.contenttypes import generic
 
 from .models import MetaTag
 from .forms import InlineMetaTagForm, MetaTagForm
+from .decorators import add_translation_tabs_inline, add_translation_tabs
 
 
+@add_translation_tabs_inline
 class MetaTagInline(generic.GenericStackedInline):
     model = MetaTag
     extra = 1
@@ -12,6 +14,7 @@ class MetaTagInline(generic.GenericStackedInline):
     form = InlineMetaTagForm
 
 
+@add_translation_tabs
 class MetaTagAdmin(admin.ModelAdmin):
     form = MetaTagForm
     list_display = ('url',)

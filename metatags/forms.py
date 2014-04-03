@@ -10,11 +10,6 @@ class InlineMetaTagForm(forms.ModelForm):
     class Meta:
         model = MetaTag
         fields = ('title', 'keywords', 'description')
-        widgets = {
-            'title': forms.TextInput({'class': 'meta_title'}),
-            'keywords': forms.TextInput({'class': 'meta_keywords'}),
-            'description': forms.Textarea({'class': 'meta_description'})
-        }
 
     class Media:
         css = {
@@ -38,15 +33,12 @@ class MetaTagForm(InlineMetaTagForm):
         if not url.startswith('/'):
             raise forms.ValidationError(_('URL is missing a leading slash.'))
 
-        if (settings.APPEND_SLASH and
-            'django.middleware.common.CommonMiddleware' in settings.MIDDLEWARE_CLASSES and
-            not url.endswith('/')):
+        if (settings.APPEND_SLASH and 'django.middleware.common.CommonMiddleware' in settings.MIDDLEWARE_CLASSES and
+                not url.endswith('/')):
             raise forms.ValidationError(_('URL is missing a trailing slash.'))
 
         if MetaTag.objects.filter(url=url).exists():
-            if self.instance is None:
-                raise forms.ValidationError(_('Meta-tags for a given URL-path have already been identified.'))
-            elif url != self.instance.url:
+            if self.instance is None or url != self.instance.url:
                 raise forms.ValidationError(_('Meta-tags for a given URL-path have already been identified.'))
 
         return url

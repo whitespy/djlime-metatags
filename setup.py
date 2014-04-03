@@ -10,13 +10,13 @@ def long_description():
 
 setup(
     name='djlime-metatags',
+    version='0.9.8',
     author='Andrey Butenko',
     author_email='whitespysoftware@yandex.ru',
     url='https://github.com/whitespy/djlime-metatags',
     description='''Django application for attaching meta-tags to objects and
      URL-path.''',
     long_description=long_description(),
-    version='0.9.7',
     packages=find_packages(),
     include_package_data=True,
     platforms='any'
