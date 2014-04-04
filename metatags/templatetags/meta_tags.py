@@ -7,9 +7,8 @@ from metatags.models import MetaTag
 register = Library()
 
 
-def _get_page_title(page_object, page_title_field): (
-    getattr(page_object, page_title_field, force_text(page_object))
-)
+def _get_page_title(page_object, page_title_field):
+    return getattr(page_object, page_title_field, force_text(page_object))
 
 
 @register.inclusion_tag('metatags/_meta_tags.html', takes_context=True)
