@@ -24,6 +24,8 @@ def include_meta_tags(context, page_object=None, page_title_field='title',
             # Get not blank title
             meta_tags.title = meta_tags.title or \
                 _get_page_title(page_object, page_title_field)
+            meta_tags.keywords = meta_tags.keywords or default_keywords
+            meta_tags.description = meta_tags.description or default_description
         except MetaTag.DoesNotExist:
             meta_tags = {
                 'title': _get_page_title(page_object, page_title_field),
@@ -36,6 +38,8 @@ def include_meta_tags(context, page_object=None, page_title_field='title',
             url_path = context['request'].path_info
             meta_tags = MetaTag.objects.get(url=url_path)
             meta_tags.title = meta_tags.title or default_title
+            meta_tags.keywords = meta_tags.keywords or default_keywords
+            meta_tags.description = meta_tags.description or default_description
         except (KeyError, MetaTag.DoesNotExist):
             meta_tags = {
                 'title': default_title,
