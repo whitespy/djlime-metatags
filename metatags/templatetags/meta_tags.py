@@ -13,7 +13,7 @@ def _get_page_title(page_object, page_title_field):
 
 @register.inclusion_tag('metatags/_meta_tags.html', takes_context=True)
 def include_meta_tags(context, page_object=None, page_title_field='title',
-                      default_title=''):
+                      default_title='', default_keywords='', default_description=''):
     if page_object is not None:
         # Get the meta tags for the object
         try:
@@ -26,7 +26,9 @@ def include_meta_tags(context, page_object=None, page_title_field='title',
                 _get_page_title(page_object, page_title_field)
         except MetaTag.DoesNotExist:
             meta_tags = {
-                'title': _get_page_title(page_object, page_title_field)
+                'title': _get_page_title(page_object, page_title_field),
+                'keywords': default_keywords,
+                'description': default_description
             }
     else:
         # Get the meta tags for the URL-path
@@ -37,8 +39,7 @@ def include_meta_tags(context, page_object=None, page_title_field='title',
         except (KeyError, MetaTag.DoesNotExist):
             meta_tags = {
                 'title': default_title,
-                'keywords': '',
-                'description': ''
+                'keywords': default_keywords,
+                'description': default_description
             }
-
     return {'meta_tags': meta_tags}
