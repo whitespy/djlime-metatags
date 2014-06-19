@@ -10,7 +10,7 @@ def long_description():
 
 setup(
     name='djlime-metatags',
-    version='0.9.9',
+    version='0.9.10',
     author='Andrey Butenko',
     author_email='whitespysoftware@yandex.ru',
     url='https://github.com/whitespy/djlime-metatags',
