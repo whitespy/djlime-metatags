@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-02 14:18+0300\n"
+"POT-Creation-Date: 2014-10-01 11:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: forms.py:21 models.py:11
+#: apps.py:7
+msgid "Meta tags"
+msgstr "Мета-теги"
+
+#: forms.py:21 models.py:15
 msgid "URL-path"
 msgstr "URL-шлях"
 
@@ -50,18 +54,18 @@ msgstr "В кінці URL відсутня коса риса."
 msgid "Meta-tags for a given URL-path have already been identified."
 msgstr "Мета-теги для заданого URL-шляху вже визначені."
 
-#: models.py:15
+#: models.py:19
 msgid "title"
 msgstr "заголовок"
 
-#: models.py:16
+#: models.py:20
 msgid "keywords"
 msgstr "ключові слова"
 
-#: models.py:17
+#: models.py:21
 msgid "description"
 msgstr "опис"
 
-#: models.py:23 models.py:24
+#: models.py:27 models.py:28
 msgid "meta tags"
 msgstr "мета-теги"

@@ -1,5 +1,9 @@
 from django.contrib import admin
-from django.contrib.contenttypes import generic
+
+try:
+    from django.contrib.contenttypes.admin import GenericStackedInline
+except ImportError:
+    from django.contrib.contenttypes.generic import GenericStackedInline
 
 from .models import MetaTag
 from .forms import InlineMetaTagForm, MetaTagForm
@@ -7,7 +11,7 @@ from .decorators import add_translation_tabs_inline, add_translation_tabs
 
 
 @add_translation_tabs_inline
-class MetaTagInline(generic.GenericStackedInline):
+class MetaTagInline(GenericStackedInline):
     model = MetaTag
     extra = 1
     max_num = 1
@@ -19,8 +23,8 @@ class MetaTagAdmin(admin.ModelAdmin):
     form = MetaTagForm
     list_display = ('url',)
 
-    def queryset(self, request):
-        qs = super(MetaTagAdmin, self).queryset(request)
+    def get_queryset(self, request):
+        qs = super(MetaTagAdmin, self).get_queryset(request)
         return qs.filter(content_type__isnull=True, object_id__isnull=True)
 
 admin.site.register(MetaTag, MetaTagAdmin)
