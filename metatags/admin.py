@@ -16,6 +16,7 @@ class MetaTagInline(GenericStackedInline):
     extra = 1
     max_num = 1
     form = InlineMetaTagForm
+    template = 'metatags/edit_inline/stacked.html'
 
 
 @add_translation_tabs

@@ -8,7 +8,6 @@ from .models import MetaTag
 class InlineMetaTagForm(forms.ModelForm):
 
     class Meta:
-        model = MetaTag
         fields = ('title', 'keywords', 'description')
 
     class Media:
@@ -24,7 +23,7 @@ class MetaTagForm(InlineMetaTagForm):
                            error_message=_("This value must contain only letters, numbers,"
                                            "dots, underscores, dashes, slashes or tildes."))
 
-    class Meta(InlineMetaTagForm.Meta):
+    class Meta:
         fields = ('url', 'title', 'keywords', 'description')
 
     def clean_url(self):

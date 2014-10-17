@@ -1,6 +1,4 @@
-*.pyc
-*.pyo
-*.pyw
+*.py[cow]
 .idea
 dist/
 build/
