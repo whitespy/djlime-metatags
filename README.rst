@@ -13,17 +13,20 @@ $ pip install djlime-metatags
 
 - Добавьте приложение metatags в кортеж INSTALLED_APPS::
 
+    .. code-block:: python
+
     INSTALLED_APPS = (
         ...
         'metatags',
     )
 - Выполните команду::
 
-    python manage.py syncdb
+    python manage.py syncdb (migrate для django=>1.7)
 
-- Для подключения мета-тегов к объектам необходимо импортировать класс MetaTagInline в файл admin.py, вашего приложения и 
-указать его в списке inlines, ModelAdmin-класса: ::
-  
+- Для подключения мета-тегов к объектам необходимо импортировать класс MetaTagInline в файл admin.py, вашего приложения и указать его в списке inlines, ModelAdmin-класса ::
+
+    .. code-block:: python
+
     from metatags.admin import MetaTagInline
     
     ...
@@ -60,3 +63,7 @@ $ pip install djlime-metatags
 
 **default_title** - Заголовок страницы по умолчанию. Используется совместно с URL-путями, и не имеет никакого смысла 
 при передаче контекстного объекта в включающий тег. '' по умолчанию.
+
+**default_keywords** - Ключевые слова по умолчанию.
+
+**default_description** - Описание по умолчанию.
