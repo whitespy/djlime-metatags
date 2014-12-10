@@ -13,8 +13,6 @@ $ pip install djlime-metatags
 
 - Добавьте приложение metatags в кортеж INSTALLED_APPS::
 
-    .. code-block:: python
-
     INSTALLED_APPS = (
         ...
         'metatags',
@@ -24,8 +22,6 @@ $ pip install djlime-metatags
     python manage.py syncdb (migrate для django=>1.7)
 
 - Для подключения мета-тегов к объектам необходимо импортировать класс MetaTagInline в файл admin.py, вашего приложения и указать его в списке inlines, ModelAdmin-класса ::
-
-    .. code-block:: python
 
     from metatags.admin import MetaTagInline
     
@@ -67,3 +63,10 @@ $ pip install djlime-metatags
 **default_keywords** - Ключевые слова по умолчанию.
 
 **default_description** - Описание по умолчанию.
+
+
+Команды управления
+------------------
+
+**syncmetatags** - синхронизация полей при совместном использовании с приложением django-modeltranslation.
+Данная команда доступна начиная с версии **0.9.11**.
