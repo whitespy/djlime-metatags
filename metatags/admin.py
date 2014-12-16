@@ -23,6 +23,7 @@ class MetaTagInline(GenericStackedInline):
 class MetaTagAdmin(admin.ModelAdmin):
     form = MetaTagForm
     list_display = ('url',)
+    search_fields = ['url', 'title', 'keywords', 'description']
 
     def get_queryset(self, request):
         qs = super(MetaTagAdmin, self).get_queryset(request)
