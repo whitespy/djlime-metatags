@@ -17,7 +17,7 @@ def add_translation_tabs(cls):
         class Media:
             js = (
                 'modeltranslation/js/force_jquery.js',
-                'js/jquery-ui.min.js',
+                'js/jquery-ui.js',
                 'modeltranslation/js/tabbed_translation_fields.js',
             )
             css = {

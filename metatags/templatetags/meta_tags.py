@@ -1,4 +1,5 @@
 from django.template import Library
+from django.shortcuts import _get_queryset
 from django.utils.encoding import force_text
 
 from metatags.models import MetaTag
@@ -10,6 +11,14 @@ register = Library()
 
 def _get_page_title(page_object, page_title_field):
     return getattr(page_object, page_title_field, force_text(page_object))
+
+
+def _get_object_or_none(cls, *args, **kwargs):
+    queryset = _get_queryset(cls)
+    try:
+        return queryset.get(*args, **kwargs)
+    except queryset.model.DoesNotExist:
+        return None
 
 
 @register.inclusion_tag('metatags/_meta_tags.html', takes_context=True)
@@ -36,8 +45,13 @@ def include_meta_tags(context, page_object=None, page_title_field='title',
     else:
         # Get the meta tags for the URL-path
         try:
-            url_path = truncate_language_code(context['request'].path_info)
-            meta_tags = MetaTag.objects.get(url=url_path)
+            full_url_path = truncate_language_code(context['request'].get_full_path())
+            meta_tags = _get_object_or_none(MetaTag, url=full_url_path)
+
+            if meta_tags is None:
+                url_path = truncate_language_code(context['request'].path_info)
+                meta_tags = MetaTag.objects.get(url=url_path)
+
             meta_tags.title = meta_tags.title or default_title
             meta_tags.keywords = meta_tags.keywords or default_keywords
             meta_tags.description = meta_tags.description or default_description

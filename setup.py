@@ -8,7 +8,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 
 setup(
     name='djlime-metatags',
-    version='0.9.11',
+    version='0.9.12',
     author='Andrey Butenko',
     author_email='whitespysoftware@yandex.ru',
     url='https://github.com/whitespy/djlime-metatags',

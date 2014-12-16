@@ -1,8 +1,13 @@
+import re
+
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from .models import MetaTag
+
+
+url_re = re.compile(r'^(?P<url_path>[-\w/\.~]+)(?:/?|[/?]\S+)$', re.IGNORECASE)
 
 
 class InlineMetaTagForm(forms.ModelForm):
@@ -17,7 +22,7 @@ class InlineMetaTagForm(forms.ModelForm):
 
 
 class MetaTagForm(InlineMetaTagForm):
-    url = forms.RegexField(label=_('URL-path'), max_length=100, regex=r'^[-\w/\.~]+$',
+    url = forms.RegexField(label=_('URL-path'), max_length=100, regex=url_re,
                            help_text=_("Example: '/about/contact/'. Make sure to have leading "
                                        "and trailing slashes."),
                            error_message=_("This value must contain only letters, numbers,"
@@ -32,9 +37,12 @@ class MetaTagForm(InlineMetaTagForm):
         if not url.startswith('/'):
             raise forms.ValidationError(_('URL is missing a leading slash.'))
 
-        if (settings.APPEND_SLASH and 'django.middleware.common.CommonMiddleware' in settings.MIDDLEWARE_CLASSES and
-                not url.endswith('/')):
-            raise forms.ValidationError(_('URL is missing a trailing slash.'))
+        if settings.APPEND_SLASH and 'django.middleware.common.CommonMiddleware' in settings.MIDDLEWARE_CLASSES:
+            url_match = url_re.match(url)
+            url_path = url_match.group('url_path')
+
+            if not url_path.endswith('/'):
+                raise forms.ValidationError(_('URL is missing a trailing slash.'))
 
         if MetaTag.objects.filter(url=url).exists():
             if self.instance is None or url != self.instance.url:
