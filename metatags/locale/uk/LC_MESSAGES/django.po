@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-16 10:22+0200\n"
+"POT-Creation-Date: 2016-07-30 15:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,77 +19,53 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: apps.py:7
+#: apps.py:7 templates/metatags/admin/edit_inline/stacked.html:3
 msgid "Meta tags"
 msgstr "Мета-теги"
 
-#: forms.py:25 models.py:15
+#: forms.py:20 models.py:11
 msgid "URL-path"
 msgstr "URL-шлях"
 
-#: forms.py:26
+#: forms.py:21
 msgid ""
 "Example: '/about/contact/'. Make sure to have leading and trailing slashes."
 msgstr ""
 "Приклад: '/about/contact/'. Переконайтеся у наявності слешу на початку та у "
 "кінці."
 
-#: forms.py:28
+#: forms.py:22
 msgid ""
-"This value must contain only letters, numbers,dots, underscores, dashes, "
+"This value must contain only letters, numbers, dots, underscores, dashes, "
 "slashes or tildes."
 msgstr ""
 "Це значення повинне містити тільки літери, цифри, крапки, підкреслення, "
 "тире, косі риси чи тільди."
 
-#: forms.py:38
+#: forms.py:32
 msgid "URL is missing a leading slash."
 msgstr "На початку URL відсутня коса риса."
 
-#: forms.py:45
+#: forms.py:36
 msgid "URL is missing a trailing slash."
 msgstr "В кінці URL відсутня коса риса."
 
-#: forms.py:49
-msgid "Meta-tags for a given URL-path have already been identified."
+#: forms.py:40
+msgid "Meta tags for a given URL-path have already been identified."
 msgstr "Мета-теги для заданого URL-шляху вже визначені."
 
-#: models.py:19
+#: models.py:15
 msgid "title"
 msgstr "заголовок"
 
-#: models.py:20
+#: models.py:16
 msgid "keywords"
 msgstr "ключові слова"
 
-#: models.py:21
+#: models.py:17
 msgid "description"
 msgstr "опис"
 
-#: models.py:27 models.py:28
+#: models.py:23 models.py:24
 msgid "meta tags"
 msgstr "мета-теги"
-
-#: templates/admin/metatags/metatag/change_form.html:18
-msgid "Home"
-msgstr ""
-
-#: templates/admin/metatags/metatag/change_form.html:21
-msgid "Add"
-msgstr ""
-
-#: templates/admin/metatags/metatag/change_form.html:33
-msgid "History"
-msgstr ""
-
-#: templates/admin/metatags/metatag/change_form.html:35
-msgid "View on site"
-msgstr ""
-
-#: templates/admin/metatags/metatag/change_form.html:47
-msgid "Please correct the error below."
-msgstr ""
-
-#: templates/admin/metatags/metatag/change_form.html:47
-msgid "Please correct the errors below."
-msgstr ""

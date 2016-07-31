@@ -1,18 +1,18 @@
 from django.conf import settings
 from django.core.management import call_command
-from django.core.management.base import NoArgsCommand, CommandError
+from django.core.management.base import BaseCommand, CommandError
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
 
-    def handle_noargs(self, **options):
+    def handle(self, **options):
         if 'modeltranslation' in settings.INSTALLED_APPS:
             try:
-                call_command('sync_translation_fields')
+                call_command('sync_translation_fields', interactive=False)
                 call_command('update_translation_fields')
             except CommandError:
-                self.stderr.write('Unknown error')
+                self.stderr.write('Unknown error.')
             else:
-                self.stdout.write('Fields successfully synchronized')
+                self.stdout.write('Fields have been successfully synchronized.')
         else:
-            self.stderr.write('django-modeltranslation not installed')
+            self.stderr.write('django-modeltranslation is not installed.')

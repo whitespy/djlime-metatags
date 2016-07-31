@@ -1,0 +1,20 @@
+{% load i18n %}
+<div class="inline-group" id="{{ inline_admin_formset.formset.prefix }}-group">
+    <h2>{% trans 'Meta tags' %}</h2>
+    {{ inline_admin_formset.formset.management_form }}
+    {{ inline_admin_formset.formset.non_form_errors }}
+    {% for inline_admin_form in inline_admin_formset %}
+        <div class="meta_tags inline-related{% if forloop.last %} empty-form last-related{% endif %}" id="{{ inline_admin_formset.formset.prefix }}-{% if not forloop.last %}{{ forloop.counter0 }}{% else %}empty{% endif %}">
+            {% if inline_admin_form.form.non_field_errors %}
+                {{ inline_admin_form.form.non_field_errors }}
+            {% endif %}
+            {% for fieldset in inline_admin_form %}
+                {% include "admin/includes/fieldset.html" %}
+            {% endfor %}
+            {% if inline_admin_form.needs_explicit_pk_field %}
+                {{ inline_admin_form.pk_field.field }}
+            {% endif %}
+            {{ inline_admin_form.fk_field.field }}
+        </div>
+    {% endfor %}
+</div>

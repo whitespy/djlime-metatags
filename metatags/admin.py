@@ -1,32 +1,46 @@
+from django import forms
+from django.utils import six
 from django.contrib import admin
-
-try:
-    from django.contrib.contenttypes.admin import GenericStackedInline
-except ImportError:
-    from django.contrib.contenttypes.generic import GenericStackedInline
+from django.conf import settings
+from django.contrib.contenttypes.admin import GenericStackedInline
 
 from .models import MetaTag
 from .forms import InlineMetaTagForm, MetaTagForm
-from .decorators import add_translation_tabs_inline, add_translation_tabs
 
 
-@add_translation_tabs_inline
-class MetaTagInline(GenericStackedInline):
+class MetaTagInlineMeta(forms.MediaDefiningClass):
+
+    def __new__(mcs, name, bases, attrs):
+        if 'modeltranslation' in settings.INSTALLED_APPS:
+            from modeltranslation.admin import TranslationGenericStackedInline
+            bases = (TranslationGenericStackedInline,)
+        return super(MetaTagInlineMeta, mcs).__new__(mcs, name, bases, attrs)
+
+
+class MetaTagAdminMeta(forms.MediaDefiningClass):
+
+    def __new__(mcs, name, bases, attrs):
+        if 'modeltranslation' in settings.INSTALLED_APPS:
+            from modeltranslation.admin import TranslationAdmin
+            bases = (TranslationAdmin,)
+        return super(MetaTagAdminMeta, mcs).__new__(mcs, name, bases, attrs)
+
+
+class MetaTagInline(six.with_metaclass(MetaTagInlineMeta, GenericStackedInline)):
     model = MetaTag
     extra = 1
     max_num = 1
+    can_delete = False
     form = InlineMetaTagForm
-    template = 'metatags/edit_inline/stacked.html'
+    template = 'metatags/admin/edit_inline/stacked.html'
 
 
-@add_translation_tabs
-class MetaTagAdmin(admin.ModelAdmin):
+@admin.register(MetaTag)
+class MetaTagAdmin(six.with_metaclass(MetaTagAdminMeta, admin.ModelAdmin)):
     form = MetaTagForm
     list_display = ('url',)
     search_fields = ['url', 'title', 'keywords', 'description']
 
     def get_queryset(self, request):
-        qs = super(MetaTagAdmin, self).get_queryset(request)
-        return qs.filter(content_type__isnull=True, object_id__isnull=True)
-
-admin.site.register(MetaTag, MetaTagAdmin)
+        return super(MetaTagAdmin, self).get_queryset(request).filter(
+            content_type__isnull=True, object_id__isnull=True)
